@@ -12,6 +12,7 @@
     "paths": {
       "@app": ["../src/app.ts"],
       "@api/*": ["./api/*"],
+      "@errors/*": ["./error/*"],
       "@config/*": ["./config/*"],
       "@middlewares/*": ["./middlewares/*"],
       "@modules/*": ["./modules/*"],
