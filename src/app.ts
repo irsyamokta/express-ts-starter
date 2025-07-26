@@ -10,6 +10,7 @@ import { errorHandler } from "@middlewares/error.handler";
 import { corsOptions } from "@utils/cors";
 import { limiter } from "@utils/limiter";
 import authRoutes from "@modules/auth/auth.routes";
+import passwordRoutes from "@modules/password/password.routes";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.get("/", (req, res) => res.json({ message: `Welcome to ${ENV.APP_NAME}` }));
  * @desc Main API
  */
 app.use("/api/auth", authRoutes);
+app.use("/api/password", passwordRoutes);
 
 /**
  * @route /api/docs
