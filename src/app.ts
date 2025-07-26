@@ -9,6 +9,7 @@ import { logger } from "@config/logger";
 import { errorHandler } from "@middlewares/error.handler";
 import { corsOptions } from "@utils/cors";
 import { limiter } from "@utils/limiter";
+import authRoutes from "@modules/auth/auth.routes";
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => res.json({ message: `Welcome to ${ENV.APP_NAME}` }));
  * @route /api/
  * @desc Main API
  */
+app.use("/api/auth", authRoutes);
 
 /**
  * @route /api/docs

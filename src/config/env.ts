@@ -5,6 +5,7 @@ export const ENV = {
     APP_NAME: process.env.APP_NAME || "Express TypeScript Starter",
     PORT: process.env.PORT || 5000,
     ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS || "*",
+    CLIENT_URL: process.env.CLIENT_URL || "http://localhost:3000",
     DATABASE_URL: process.env.DATABASE_URL!,
     EMAIL_HOST: process.env.EMAIL_HOST!,
     EMAIL_PORT: process.env.EMAIL_PORT!,
