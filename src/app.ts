@@ -11,6 +11,7 @@ import { corsOptions } from "@utils/cors";
 import { limiter } from "@utils/limiter";
 import authRoutes from "@modules/auth/auth.routes";
 import passwordRoutes from "@modules/password/password.routes";
+import userRoutes from "@modules/user/user.routes";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => res.json({ message: `Welcome to ${ENV.APP_NAME}` }));
  */
 app.use("/api/auth", authRoutes);
 app.use("/api/password", passwordRoutes);
+app.use("/api/user", userRoutes);
 
 /**
  * @route /api/docs
