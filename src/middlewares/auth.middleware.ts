@@ -1,8 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { verifyAccessToken } from "@utils/jwt";
+import { AuthRequest } from "../types/index";
 
 export const authMiddleware = (
-    req: Request,
+    req: AuthRequest,
     res: Response,
     next: NextFunction
 ) => {
@@ -12,7 +13,12 @@ export const authMiddleware = (
         if (!token) return res.status(401).json({ message: "Unauthorized" });
 
         const decoded = verifyAccessToken(token);
-        (req as any).userId = decoded.userId;
+
+        req.user = {
+            id: decoded.userId,
+            role: decoded.role,
+        };
+
         next();
     } catch {
         res.status(401).json({ message: "Unauthorized" });
