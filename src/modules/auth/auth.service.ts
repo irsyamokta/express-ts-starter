@@ -39,8 +39,8 @@ const login = async (req: Request, email: string, password: string) => {
 
     if (!user.isVerified) throw new ApiError(401, "Email not verified");
 
-    const accessToken = generateAccessToken(user.id);
-    const refreshToken = generateRefreshToken(user.id);
+    const accessToken = generateAccessToken(user.id, user.role);
+    const refreshToken = generateRefreshToken(user.id, user.role);
 
     await authRepository.createSession(
         user.id,
@@ -57,7 +57,7 @@ const refreshToken = async (refreshToken: string) => {
     const decoded = verifyRefreshToken(refreshToken);
     const session = await authRepository.findSessionByRefreshToken(refreshToken);
     if (!session) throw new Error("Invalid refresh token");
-    return { accessToken: generateAccessToken(decoded.userId) };
+    return { accessToken: generateAccessToken(decoded.userId, decoded.role) };
 };
 
 const me = (userId: string) => {
